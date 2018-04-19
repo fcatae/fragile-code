@@ -119,14 +119,18 @@ namespace fragile
 
         bool BTreesAreEquals(BTN a, BTN b)
         {
-            if (BTreeAsString(a) == BTreeAsString(b))
-            {
+            // se AMBOS forem nulos, então são iguais
+            if( a == null && b == null )
                 return true;
-            }
-            else
-            {
+
+            // se SOMENTE UM for nulo, então são diferentes
+            if( a == null || b == null )
                 return false;
-            }
+
+            // AMBOS são NÃO-NULOS, então todas propriedades devem ser iguais
+            return (a.val == b.val) &&
+                   BTreesAreEquals(a.left, b.left) &&
+                   BTreesAreEquals(a.right, b.right);
         }
 
         string BTreeAsString(BTN a)
