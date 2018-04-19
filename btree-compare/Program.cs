@@ -17,6 +17,10 @@ namespace fragile
 
     class BTN
     {
+        public BTN(int val)
+        {
+            this.val = val;
+        }
         public int val;
         public BTN left;
         public BTN right;
@@ -26,88 +30,44 @@ namespace fragile
     {
         public void run()
         {
-            BTN a = new BTN
+            BTN a = new BTN(1)
             {
-                val = 1,
-                left = new BTN
+                left = new BTN(2),
+                right = new BTN(3)
                 {
-                    val = 2
-                },
-                right = new BTN
-                {
-                    val = 3,
-                    left = new BTN
-                    {
-                        val = 4
-                    },
-                    right = new BTN
-                    {
-                        val = 5
-                    }
+                    left = new BTN(4),
+                    right = new BTN(5)
                 }
             };
 
-            BTN b = new BTN
+            BTN b = new BTN(1)
             {
-                val = 1,
-                left = new BTN
+                left = new BTN(2)
                 {
-                    val = 2,
-                    left = new BTN
-                    {
-                        val = 4
-                    },
-                    right = new BTN
-                    {
-                        val = 5
-                    }
+                    left = new BTN(4),
+                    right = new BTN(5)
                 },
-                right = new BTN
+                right = new BTN(3)
+            };
+
+            BTN c = new BTN(1)
+            {
+                left = new BTN(2),
+                right = new BTN(3)
                 {
-                    val = 3
+                    left = new BTN(4),
+                    right = new BTN(5)
                 }
             };
 
-            BTN c = new BTN
+            BTN d = new BTN(1)
             {
-                val = 1,
-                left = new BTN
+                left = new BTN(2)
                 {
-                    val = 2
+                    left = new BTN(4),
+                    right = new BTN(5)
                 },
-                right = new BTN
-                {
-                    val = 3,
-                    left = new BTN
-                    {
-                        val = 4
-                    },
-                    right = new BTN
-                    {
-                        val = 5
-                    }
-                }
-            };
-
-            BTN d = new BTN
-            {
-                val = 1,
-                left = new BTN
-                {
-                    val = 2,
-                    left = new BTN
-                    {
-                        val = 4
-                    },
-                    right = new BTN
-                    {
-                        val = 5
-                    }
-                },
-                right = new BTN
-                {
-                    val = 3
-                }
+                right = new BTN(3)
             };
 
             Console.WriteLine("Is a equal to b? {0}", BTreesAreEquals(a, b));
@@ -132,24 +92,6 @@ namespace fragile
                    BTreesAreEquals(a.left, b.left) &&
                    BTreesAreEquals(a.right, b.right);
         }
-
-        string BTreeAsString(BTN a)
-        {
-            var result = a.val.ToString();
-
-            if (a.left != null)
-            {
-                result = result + "-L-" + BTreeAsString(a.left);
-            }
-
-            if (a.right != null)
-            {
-                result = result + "-R-" + BTreeAsString(a.right);
-            }
-
-            return result;
-        }
-
     }   
 
 }
